@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <link rel="stylesheet" href="assets/welcome.css">
+</head>
+<body>
+    <form >
+        <label for="branchName">Branch Name:</label>
+        <select id="branchName" >
+            <option value="vapi">Vapi</option>
+            <option value="dhanu">Dhanu</option>
+            <option value="daman">Daman</option>
+        </select>
+
+        <label for="cashierName">Cashier Name:</label>
+        <input type="text" id="cashierName"  required><br><br>
+
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName"  required><br><br>
+
+        <label for="orderNo">Order No:</label>
+        <input type="text" id="orderNo"  readonly><br><br>
+
+        <label for="orderDate">Order Date:</label>
+        <input type="date" id="orderDate"  value="" required><br><br>
+
+        <label for="dish">Dish:</label>
+        
+        <select id="dish" >
+            <option value="biryani">Special Chicken Dum Biryani</option>
+            <option value="rayta">Rayta salad</option>
+            <option value="breadhalwa">Bread Halwa</option>
+            <option value="sujihalwa">Suji Halwa</option>
+            <option value="drumstick">Chicken Drumstick</option>
+            <option value="lollipop">Chicken Lollipop</option>
+            <option value="popcorn">Chicken Popcorn</option>
+            <option value="wing">Chicken Wing</option>
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" value="1" min="1"><br><br>
+
+        <button type="button" onclick="addDish()">Add</button><br><br>
+
+        <ul id="dishList"></ul>
+
+        <label for="totalPrice">Total Price:</label>
+        <input type="text" id="totalPrice" readonly><br><br>
+        <label for="paymentMode">Payment Mode:</label>
+        <select id="payMode" >
+            <option value="cash">Cash</option>
+            <option value="upi">UPI</option>
+        </select>
+        
+        <div id="pdfPopup" style="display: none;">
+            <div id="pdfDetails">
+                <!-- PDF details will be displayed here -->
+            </div>
+            <button onclick="printPDF()">Print PDF</button>
+            <button onclick="closePDFPopup()">Close</button>
+        </div>
+
+
+        
+        <button type="button" onclick="generatePDF()">Generate PDF</button>
+        
+    </form>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>
