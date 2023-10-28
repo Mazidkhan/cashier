@@ -132,7 +132,7 @@ function printPDF() {
     orderCount=orderCount+1;
     orderNo.value=orderCount;
 
-    printArea.innerHTML = "<h1>Sufiyana Biryani(The Original Dum Biryani)<br><b>Mob:</b>8160569472</h1><br><br>Order No:"+orderNo.value+"<br>Cashier:"+username+"<br>Customer:" +customerName+"<br>"+dishList+"<br>Date:"+dat+"<br>Total Price:"+p+"<br>Payment Mode: "+payMode +"<br><br><b>ThankYou Visit Again</b>";
+    printArea.innerHTML = "<h3>Sufiyana Biryani(The Original Dum Biryani)</h3><br><h4><b>Mob:</b>8160569472</h4><br><br>Order No:"+orderNo.value+"<br>Cashier:"+username+"<br>Customer:" +customerName+"<br>"+dishList+"<br>Date:"+dat+"<br>Total Price:"+p+"<br>Payment Mode: "+payMode +"<br><br><b>ThankYou Visit Again</b>";
 
     // Capture the HTML content
     var contentToPrint = printArea.innerHTML;
