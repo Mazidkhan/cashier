@@ -66,7 +66,6 @@ app.post("/",encoder, function(req,res){
 
     connection.query("select * from loginuser where user_name = ? and user_pass = ?",[username,password],function(error,results,fields){
         /*if (results.length > 1) {*/
-            console.log(results.length)
             res.redirect(`/welcome?username=${username}`);
         /*} else {
             res.redirect("/");
