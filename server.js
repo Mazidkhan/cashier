@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const express = require("express");
 const bodyParser = require("body-parser");
 const encoder = bodyParser.urlencoded();
@@ -36,11 +36,11 @@ app.get('/generate-pdf', (req, res) => {
     res.send('PDF generated successfully');
 });
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "nodejs"
-    
+    host: 'sql.freedb.tech',
+    user: 'freedb_rahilkha',  // Replace with your MySQL username
+    password: 'nD6@pjr7X%?3?Pa',  // Replace with your MySQL password
+    database: 'freedb_testpurpose'  // Replace with your database name
+      
 });
 
 // connect to the database
