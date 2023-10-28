@@ -7,22 +7,18 @@
     <link rel="stylesheet" href="assets/welcome.css">
 </head>
 <body>
-    <form >
+    
         <label for="branchName">Branch Name:</label>
         <select id="branchName" >
-            <option value="vapi">Vapi</option>
-            <option value="dhanu">Dhanu</option>
             <option value="daman">Daman</option>
         </select>
 
-        <label for="cashierName">Cashier Name:</label>
-        <input type="text" id="cashierName"  required><br><br>
 
         <label for="customerName">Customer Name:</label>
         <input type="text" id="customerName"  required><br><br>
 
         <label for="orderNo">Order No:</label>
-        <input type="text" id="orderNo"  readonly><br><br>
+        <input type="text" id="orderNo" readonly value="1"><br><br>
 
         <label for="orderDate">Order Date:</label>
         <input type="date" id="orderDate"  value="" required><br><br>
@@ -49,25 +45,19 @@
 
         <label for="totalPrice">Total Price:</label>
         <input type="text" id="totalPrice" readonly><br><br>
+        
         <label for="paymentMode">Payment Mode:</label>
         <select id="payMode" >
             <option value="cash">Cash</option>
             <option value="upi">UPI</option>
         </select>
         
-        <div id="pdfPopup" style="display: none;">
-            <div id="pdfDetails">
-                <!-- PDF details will be displayed here -->
-            </div>
-            <button onclick="printPDF()">Print PDF</button>
-            <button onclick="closePDFPopup()">Close</button>
+        <div id="pdfDetails">
+            <!-- PDF details will be displayed here -->
         </div>
-
-
-        
-        <button type="button" onclick="generatePDF()">Generate PDF</button>
-        
-    </form>
+        <div id="printArea" style="display:none;"></div>
+        <button onclick="printPDF()">Print PDF</button>
+        <button type="button" onclick="clearFields()">Clear Fields</button><br><br>
 
     <script src="assets/script.js"></script>
 </body>

@@ -1,4 +1,4 @@
-let orderCount = 1;
+var orderCount = 0;
 
 function addDish() {
     const dish = document.getElementById('dish').value;
@@ -37,28 +37,34 @@ function addDish() {
         console.log('Invalid dish selection.');
     }
 
+    const customerName = document.getElementById('customerName').value;
+//    const orderNo = document.getElementById('orderNo').value;
+    const orderNo = orderCount+1;
+    const total = quantity*price;
 
-    li.innerHTML = `${dish} - Rs.${price} (Quantity: ${quantity}) <button onclick="removeDish(this)">X</button>`;
+    li.setAttribute('data-dish', dish);
+    li.setAttribute('data-price', total);
+    li.setAttribute('data-quantity', quantity);
+    li.setAttribute('customer-name', customerName);
+    li.setAttribute('order-no', orderNo);
+
+    li.innerHTML = `Dish - ${dish} - Rs.${total} (Quantity: ${quantity}) <button onclick="removeDish(this)">X</button>`;
     dishList.appendChild(li);
     calculateTotalPrice();
-    updateOrderNo();
     setDefaultDate();
 
     const branchName=document.getElementById('branchName').value;
-    const cashierName = document.getElementById('cashierName').value;
-    const customerName = document.getElementById('customerName').value;
-    const orderNo = document.getElementById('orderNo').value;
+    //const cashierName = document.getElementById('cashierName').value;
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get('username')
     const orderDate = document.getElementById('orderDate').value;
-    const total = quantity*price;
     const payMode=document.getElementById('payMode').value;
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/insert", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.send(JSON.stringify({ cashierName, customerName, orderNo, orderDate, total,dish,quantity ,branchName,payMode}));
-
+    xhr.send(JSON.stringify({ username, customerName, orderNo, orderDate, total,dish,quantity ,branchName,payMode}));
 }
-
 
 function setDefaultDate() {
     const today = new Date();
@@ -68,15 +74,25 @@ function setDefaultDate() {
     const formattedDate = `${year}-${month}-${day}`;
     document.getElementById('orderDate').value = formattedDate;
 }
+
 function removeDish(btn) {
     const li = btn.parentNode;
-    console.log(li)
+
+     var dish = li.getAttribute('data-dish');
+    var price = li.getAttribute('data-price');
+    var quantity = li.getAttribute('data-quantity');
+    var nam = li.getAttribute('customer-name');
+    var ono = li.getAttribute('order-no');
+
     li.parentNode.removeChild(li);
+
     calculateTotalPrice();
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/delete", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ dish,price, quantity, nam, ono}));    
 }
-function updateOrderNo() {
-    document.getElementById('orderNo').value = orderCount;
-}
+
 function calculateTotalPrice() {
     const dishPrices = Array.from(document.querySelectorAll('#dishList li')).map(li => {
         const price = parseFloat(li.textContent.match(/\d+/));
@@ -86,41 +102,54 @@ function calculateTotalPrice() {
     const totalPrice = dishPrices.reduce((acc, price) => acc + price, 0);
     document.getElementById('totalPrice').value = `${totalPrice}`;
 }
-function generatePDF() {
-    const cashierName = document.getElementById('cashierName').value;
+
+function clearFields() {
+    document.getElementById('branchName').value = 'vapi';
+    //document.getElementById('cashierName').value = '';
+    document.getElementById('customerName').value = '';
+    document.getElementById('orderDate').value = '';
+    document.getElementById('dish').value = 'biryani';
+    document.getElementById('dishList').innerHTML = '';
+    document.getElementById('quantity').value = '1';
+    document.getElementById('totalPrice').value = '';
+    document.getElementById('payMode').value = 'cash';
+    document.getElementById('pdfDetails').innerHTML = '';
+}
+
+
+function printPDF() {
+    //const cashierName = document.getElementById('cashierName').value;
+    const params = new URLSearchParams(window.location.search);
+    const username = params.get('username')
+
     const customerName = document.getElementById('customerName').value;
-    const orderNo = orderCount++;
+    var orderNo=document.getElementById('orderNo');
     const dishList = Array.from(document.querySelectorAll('#dishList li')).map(li => li.textContent);
     const p=document.getElementById('totalPrice').value;
     const dat=document.getElementById('orderDate').value;
-    const payMode=document.getElementById('payMode').value;
+    const payMode=document.getElementById('payMode').value;    
+    var printArea = document.getElementById('printArea');
+    orderCount=orderCount+1;
+    orderNo.value=orderCount;
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `http://localhost:4000/generate-pdf?cashierName=${cashierName}&customerName=${customerName}&orderNo=${orderNo}&dishList=${JSON.stringify(dishList)}&date=${dat}&payMode=${payMode}`);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            console.log('PDF generated successfully');
+    printArea.innerHTML = "<h1>Sufiyana Biryani(The Original Dum Biryani)<br><b>Mob:</b>8160569472</h1><br><br>Order No:"+orderNo.value+"<br>Cashier:"+username+"<br>Customer:" +customerName+"<br>"+dishList+"<br>Date:"+dat+"<br>Total Price:"+p+"<br>Payment Mode: "+payMode +"<br><br><b>ThankYou Visit Again</b>";
 
-            // Show pop-up with PDF details
-            const pdfDetails = `Order No: ${orderNo}<br>Cashier: ${cashierName}<br>Customer: ${customerName}<br>Dishes: ${dishList}<br>Date:${dat}<br>Total Price: ${p}<br>Payment Mode: ${payMode}`;
-            document.getElementById('pdfDetails').innerHTML = pdfDetails;
-            document.getElementById('pdfPopup').style.display = 'block';
-        } else {
-            console.error('Error generating PDF');
-        }
-    };
-    xhr.send();
+    // Capture the HTML content
+    var contentToPrint = printArea.innerHTML;
+
+    // Create a temporary hidden iframe
+    var iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    // Set the content of the iframe
+    iframe.contentDocument.write(contentToPrint);
+    iframe.contentDocument.close();
+
+    // Print the iframe content
+    iframe.contentWindow.print();
+
+    // Remove the iframe
+    document.body.removeChild(iframe);
 }
 
-function printPDF() {
-    var pdfContent = document.getElementById('pdfDetails').innerHTML;
-    var newWindow = window.open('', '_blank');
-    newWindow.document.open();
-    newWindow.document.write('<html><head><title>Print</title></head><body><h1>Bombay A1 Caterers</h1>' + pdfContent + '</body></html>');
-    newWindow.document.close();
-    newWindow.print();
-}
-
-function closePopup() {
-    document.getElementById('pdfPopup').style.display = 'none';
-}

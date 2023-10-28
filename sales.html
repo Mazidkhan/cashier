@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales App</title>
+    <link rel="stylesheet" href="assets/styless.css">
+</head>
+<body>
+    <form method="post">
+        <div class="popup">
+            <div id="totalSales"></div>
+            <button type="button" class="closeButton">Close</button>
+          </div>
+        <div class="overlay"></div>
+                  
+        <label for="branch">Branch:</label>
+        <select id="branch" name="branch">
+            <option value="daman">Daman</option>
+        </select><br>
+
+        <label for="cashier">Cashier Name:</label>
+        <input type="text" id="cashier" name="cashier"><br>
+
+        <label for="dish">Dish:</label>
+        <select id="dish" name="dish">
+            <option value="biryani">Special Chicken Dum Biryani</option>
+            <option value="rayta">Rayta salad</option>
+            <option value="breadhalwa">Bread Halwa</option>
+            <option value="sujihalwa">Suji Halwa</option>
+            <option value="drumstick">Chicken Drumstick</option>
+            <option value="lollipop">Chicken Lollipop</option>
+            <option value="popcorn">Chicken Popcorn</option>
+            <option value="wing">Chicken Wing</option>
+            <option value="total">Total</option>
+        </select><br>
+
+        <label for="from">From:</label>
+        <input type="date" id="from" name="from"><br>
+
+        <label for="to">To:</label>
+        <input type="date" id="to" name="to"><br>
+        <input type="button" onclick="getSales()" value="Get Sales"><br><br>
+        <input type="button" onclick="getData()" value="Get Data">
+    </form>
+    <script src="assets/scriptt.js"></script>
+</body>
+</html>
