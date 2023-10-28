@@ -65,12 +65,12 @@ app.post("/",encoder, function(req,res){
     var password = req.body.password;
 
     connection.query("select * from loginuser where user_name = ? and user_pass = ?",[username,password],function(error,result,fields){
-        if (result.length >= 1) {
+        /*if (result.length >= 1) {*/
             res.redirect(`/welcome?username=${username}`);
-        } else {
+        /*} else {
             res.redirect("/");
         }
-        res.end();
+        res.end();*/
     })
 })
 
