@@ -74,6 +74,7 @@ app.post("/",encoder, function(req,res){
     })
 })
 
+
 app.post('/getsales', (req, res) => {
     
     const { branch,cashier,dish,from,to} = req.body;
