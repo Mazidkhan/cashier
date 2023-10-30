@@ -35,7 +35,7 @@ app.get('/generate-pdf', (req, res) => {
 
     res.send('PDF generated successfully');
 });
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
     host: 'sql.freedb.tech',
     user: 'freedb_rahilkha',  // Replace with your MySQL username
     password: 'nD6@pjr7X%?3?Pa',  // Replace with your MySQL password
@@ -44,7 +44,7 @@ const connection = mysql.createConnection({
 });
 
 // connect to the database
-connection.connect(function(error){
+connection.getConnection(function(error){
     if (error) throw error
     else console.log("connected to the database successfully!")
 });
