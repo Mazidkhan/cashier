@@ -106,7 +106,6 @@ app.post('/getsales', (req, res) => {
 });
 
 app.post('/insert', (req, res) => {
-    total=total*quantity;
     const { username, customerName, orderNo, orderDate, total,dish,quantity, branchName ,payMode} = req.body;
     console.log(username, customerName, orderNo, orderDate, total,dish,quantity,branchName,payMode)
     const sql = `INSERT INTO orders (cashier_name, customer_name, order_no, order_date,total,dish,quantity,branch_name,pay_mode)

@@ -40,7 +40,7 @@ function addDish() {
     const customerName = document.getElementById('customerName').value;
     //const orderNo = document.getElementById('orderNo').value;
     const orderNo = orderCount+1;
-    const total = price;
+    const total = price*quantity;
 
     li.setAttribute('data-dish', dish);
     li.setAttribute('data-price', total);
@@ -48,7 +48,7 @@ function addDish() {
     li.setAttribute('customer-name', customerName);
     li.setAttribute('order-no', orderNo);
 
-    li.innerHTML = `Dish - ${dish} - Rs.${total} (Quantity: ${quantity}) <button onclick="removeDish(this)">X</button>`;
+    li.innerHTML = `Dish - ${dish} - Rs.${price} (Quantity: ${quantity}) <button onclick="removeDish(this)">X</button>`;
     dishList.appendChild(li);
     calculateTotalPrice();
     setDefaultDate();
