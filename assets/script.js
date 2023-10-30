@@ -38,9 +38,9 @@ function addDish() {
     }
 
     const customerName = document.getElementById('customerName').value;
-//    const orderNo = document.getElementById('orderNo').value;
+    //const orderNo = document.getElementById('orderNo').value;
     const orderNo = orderCount+1;
-    const total = quantity*price;
+    const total = price;
 
     li.setAttribute('data-dish', dish);
     li.setAttribute('data-price', total);
@@ -114,6 +114,7 @@ function clearFields() {
     document.getElementById('totalPrice').value = '';
     document.getElementById('payMode').value = 'cash';
     document.getElementById('pdfDetails').innerHTML = '';
+    totalPrice=0;
 }
 
 
