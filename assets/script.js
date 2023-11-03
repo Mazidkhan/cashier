@@ -30,31 +30,31 @@ function addDish() {
     case 'doodhihalwa':
         price=60;
         break;
-    case 'drumstick2p':
+    case 'drumstick2':
         price=140;
         break;
-    case 'drumstick4p':
+    case 'drumstick4':
         price=270;
         break;
-    case 'drumstick8p':
+    case 'drumstick8':
         price=520;
         break;
-    case 'lollipop2p':
+    case 'lollipop2':
         price=80;
         break;
-    case 'lollipop4p':
+    case 'lollipop4':
         price=270;
         break;
-    case 'lollipop8p':
+    case 'lollipop8':
         price=520;
         break;        
     case 'popcorn':
         price=120;
         break;
-    case 'wing6p':
+    case 'wing6':
         price=120;
         break;
-    case 'wing12p':
+    case 'wing12':
         price=230;
         break;
     case 'panibottle10':
