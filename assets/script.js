@@ -9,8 +9,11 @@ function addDish() {
     let price;
 
     switch (dish) {
-    case 'biryani':
+    case 'biryanifull':
         price=140;
+        break;
+    case 'biryanihalf':
+        price=100;
         break;
     case 'rayta':
         price=20;
@@ -19,19 +22,55 @@ function addDish() {
         price=20;
         break;
     case 'sujihalwa':
+        price=30;
+        break;
+    case 'gajarhalwa':
+        price=60;
+        break;
+    case 'doodhihalwa':
+        price=60;
+        break;
+    case 'drumstick2p':
+        price=140;
+        break;
+    case 'drumstick4p':
+        price=270;
+        break;
+    case 'drumstick8p':
+        price=520;
+        break;
+    case 'lollipop2p':
+        price=80;
+        break;
+    case 'lollipop4p':
+        price=270;
+        break;
+    case 'lollipop8p':
+        price=520;
+        break;        
+    case 'popcorn':
+        price=120;
+        break;
+    case 'wing6p':
+        price=120;
+        break;
+    case 'wing12p':
+        price=230;
+        break;
+    case 'panibottle10':
+        price=10;
+        break;
+    case 'panibottle20':
         price=20;
         break;
-    case 'drumstick':
-        price=150;
+    case 'thumsup':
+        price=20;
         break;
-    case 'lollipop':
-        price=200;
+    case 'sprite':
+        price=20;
         break;
-    case 'popcorn':
-        price=150;
-        break;
-    case 'wing':
-        price=150;
+    case 'cancolddrink':
+        price=40;
         break;
     default:
         console.log('Invalid dish selection.');
