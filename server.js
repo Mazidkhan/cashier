@@ -36,6 +36,8 @@ app.get('/generate-pdf', (req, res) => {
     res.send('PDF generated successfully');
 });
 const connection = mysql.createPool({
+    //freedatabase.com
+
     host: 'sql12.freesqldatabase.com',
     user: 'sql12659463',  // Replace with your MySQL username
     password: 'bQm5ljbfV4',  // Replace with your MySQL password
