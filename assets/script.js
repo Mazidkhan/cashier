@@ -20,7 +20,6 @@ function addDish() {
         break;
     case 'breadhalwa':
         price=60;
-        
         break;
     case 'sujihalwa':
         price=30;
@@ -44,10 +43,10 @@ function addDish() {
         price=80;
         break;
     case 'lollipopfour':
-        price=270;
+        price=150;
         break;
     case 'lollipopeight':
-        price=520;
+        price=280;
         break;        
     case 'popcorn':
         price=120;
