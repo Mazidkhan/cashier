@@ -20,6 +20,7 @@ function addDish() {
         break;
     case 'breadhalwa':
         price=60;
+        
         break;
     case 'sujihalwa':
         price=30;
