@@ -80,7 +80,7 @@ app.post('/getsales', (req, res) => {
     const { branch,cashier,dish,from,to} = req.body;
     console.log(branch,cashier,dish,from,to)
     if(dish=='total'){
-        const sql = `SELECT SUM(total) as total_sales FROM orders WHERE (branch_name=? AND cashier_name=? AND order_date BETWEEN ? AND ?)`;     
+        const sql = `SELECT SUM(total) as total_sales FROM orders WHERE (branch_name=? OR cashier_name=? OR order_date BETWEEN ? AND ?)`;     
         connection.query(sql, [branch, cashier, from, to], (err, result) => {
             if (err) {
                 console.error('Error inserting data:', err);
