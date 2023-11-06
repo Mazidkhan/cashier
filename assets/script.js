@@ -51,11 +51,14 @@ function addDish() {
     case 'popcorn':
         price=120;
         break;
-    case 'wingsix':
-        price=120;
+    case 'wingtwo':
+        price=80;
         break;
-    case 'wingtwelve':
-        price=230;
+    case 'wingfour':
+        price=150;
+        break;
+    case 'wingeight':
+        price=280;
         break;
     case 'panibottle10':
         price=10;
