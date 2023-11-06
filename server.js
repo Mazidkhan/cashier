@@ -83,7 +83,7 @@ app.post('/getsales', (req, res) => {
     console.log(branch,cashier,dish,from,to)
     if(dish=='total'){
         const sql = `SELECT SUM(total) as total_sales FROM orders WHERE order_date BETWEEN ? AND ?`;     
-        connection.query(sql, [branch, cashier, from, to], (err, result) => {
+        connection.query(sql, [from, to], (err, result) => {
             if (err) {
                 console.error('Error inserting data:', err);
                 res.sendStatus(500);
@@ -94,8 +94,8 @@ app.post('/getsales', (req, res) => {
         });
     }
     else{
-        const sql = `SELECT SUM(total) as total_sales FROM orders WHERE (branch_name=? AND cashier_name=? AND dish=? AND order_date BETWEEN ? AND ?)`; 
-        connection.query(sql, [branch, cashier, dish, from, to], (err, result) => {
+        const sql = `SELECT SUM(total) as total_sales FROM orders WHERE dish=? AND order_date BETWEEN ? AND ?`; 
+        connection.query(sql, [dish, from, to], (err, result) => {
             if (err) {
                 console.error('Error inserting data:', err);
                 res.sendStatus(500);
